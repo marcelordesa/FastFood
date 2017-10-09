@@ -1,0 +1,100 @@
+﻿@Model  FastFood.Domain.Entities.Lanche;
+@{
+    ViewData["Title"] = "LancheSelecionado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="align-content:center;margin-top:50px;">
+    <label style="font-weight:bold;">LANCHE SELECIONADO</label>
+</div>
+
+<div style="margin-top:30px;">
+    <label style="font-weight:normal">Nome do Lanche:</label>
+    <label style="font-weight:bold;">@Model.Nome</label>
+</div>
+<div style="margin-top:15px;">
+    <label style="font-weight:normal;">Valor do Lanche:</label>
+    <label style="font-weight:bold;" id="lblValor">@("R$ " + Model.Valor)</label>
+</div>
+<div style="margin-top:15px;margin-bottom:30px;">
+    <label style="font-weight:normal;">Ingredientes para adicionar:</label>
+    <select id="ddlIngredientes"></select>
+    <button id="btnAdd">Adicionar</button>
+</div>
+<div style="margin-top:15px;">
+    <table id="tblIngredientes" class="table table-striped" style="margin-top:15px;">
+        <tr>
+            <th>Ingrediente</th>
+            <th>Valor</th>
+        </tr>
+    </table>
+</div>
+
+<div style="margin-top:15px;">
+    <a href="@Url.Action("index")" style="margin-right:50px;">Voltar</a>
+    <a href="@Url.Action("index")">Finalizar pedido</a>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var listaIngredientes = [];
+            var ingredientesSelecionados = [];
+            $('#tblIngredientes').hide();
+
+            $.ajax({
+                url: "/Lanche/RetornaIngedientes",
+                success: function (data) {
+                    $("#ddlIngredientes").empty();
+                    $("#ddlIngredientes").append('<option value=0>Selecione...</option>');
+                    $.each(data, function (index, element) {
+                        $("#ddlIngredientes").append('<option value="' + element.id + '">' + element.nome + '</option>');
+                    });
+
+                    listaIngredientes = data;
+                }
+            });
+
+            $("#btnAdd").click(function () {
+                var valor = 0;
+
+                if ($("#ddlIngredientes").val() == 0) {
+                    alert("Selecione um ingrediente!");
+                }
+                else {
+
+                    ingredientesSelecionados.push($("#ddlIngredientes").val());
+                    var valorAux = $('#lblValor').html().replace("R$ ", "");
+
+                    var valorObj = parseFloat(valorAux);
+
+                    $.post("/Lanche/PostRetornaLancheCalculado",
+                        { "id": @Model.Id, "ingredienteids": ingredientesSelecionados, "nome": '@Model.Nome', "valor": valorObj },
+                                obterCallback
+                          );
+
+                    for (var i = 0; i < listaIngredientes.length; i++) {
+                        if ($("#ddlIngredientes").val() == listaIngredientes[i].id) {
+                            valor = listaIngredientes[i].valor;
+                            break;
+                        }
+                    }
+
+                    $('#tblIngredientes').show();
+
+                    $('#tblIngredientes tr:last').after('<tr><td><input id=hiddenId type=hidden value=' + $("#ddlIngredientes").val() + ' />' + $('#ddlIngredientes option:selected').text() + '</td><td>R$ ' + valor + '</td></tr>');
+
+                    $("#ddlIngredientes").val("0");
+                }
+            });
+
+            //$('#tblIngredientes').on('click', '.jsClickRemover', function () {
+            //    $(this).closest('tr').remove();
+            //});
+        });
+
+        function obterCallback(retorno, status) {
+            $('#lblValor').html("R$ " + retorno.valor);
+         }
+    </script>
+}

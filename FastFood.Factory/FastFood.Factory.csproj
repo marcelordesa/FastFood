@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FastFood.Domain\FastFood.Domain.csproj" />
+    <ProjectReference Include="..\FastFood.Infrastructures\FastFood.Infrastructures.csproj" />
+    <ProjectReference Include="..\FastFood.Service\FastFood.Service.csproj" />
+  </ItemGroup>
+
+</Project>

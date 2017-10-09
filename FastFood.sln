@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.UI", "FastFood.UI\FastFood.UI.csproj", "{1B2A7F1B-B693-4971-BBFE-651D910902B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Factory", "FastFood.Factory\FastFood.Factory.csproj", "{1285D8A0-4053-4970-8EE9-EF57DDCC563A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Domain", "FastFood.Domain\FastFood.Domain.csproj", "{1D377FB2-031F-49B6-88C9-5F1B7E0DF29C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Infrastructures", "FastFood.Infrastructures\FastFood.Infrastructures.csproj", "{2BBB39BE-B3D6-410B-BFF1-545A49898D40}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Service", "FastFood.Service\FastFood.Service.csproj", "{1E6AD47D-A421-4124-9FD7-0BC04D191638}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFood.UnitTest", "FastFood.UnitTest\FastFood.UnitTest.csproj", "{78A9FB7A-F50E-455B-9354-92B1C32AFAD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B2A7F1B-B693-4971-BBFE-651D910902B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B2A7F1B-B693-4971-BBFE-651D910902B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B2A7F1B-B693-4971-BBFE-651D910902B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B2A7F1B-B693-4971-BBFE-651D910902B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1285D8A0-4053-4970-8EE9-EF57DDCC563A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1285D8A0-4053-4970-8EE9-EF57DDCC563A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1285D8A0-4053-4970-8EE9-EF57DDCC563A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1285D8A0-4053-4970-8EE9-EF57DDCC563A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D377FB2-031F-49B6-88C9-5F1B7E0DF29C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D377FB2-031F-49B6-88C9-5F1B7E0DF29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D377FB2-031F-49B6-88C9-5F1B7E0DF29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D377FB2-031F-49B6-88C9-5F1B7E0DF29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BBB39BE-B3D6-410B-BFF1-545A49898D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BBB39BE-B3D6-410B-BFF1-545A49898D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BBB39BE-B3D6-410B-BFF1-545A49898D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BBB39BE-B3D6-410B-BFF1-545A49898D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E6AD47D-A421-4124-9FD7-0BC04D191638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E6AD47D-A421-4124-9FD7-0BC04D191638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E6AD47D-A421-4124-9FD7-0BC04D191638}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E6AD47D-A421-4124-9FD7-0BC04D191638}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A9FB7A-F50E-455B-9354-92B1C32AFAD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A9FB7A-F50E-455B-9354-92B1C32AFAD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A9FB7A-F50E-455B-9354-92B1C32AFAD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A9FB7A-F50E-455B-9354-92B1C32AFAD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7107A5CA-5FFF-4A3D-AC0B-9BCE8DC86F13}
+	EndGlobalSection
+EndGlobal

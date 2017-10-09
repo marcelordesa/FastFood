@@ -1,0 +1,26 @@
+﻿[
+  {
+    "Id": 1,
+    "Nome": "X-Bacon",
+    "IngredienteIds": [ 2, 3, 5 ],
+    "Valor": 0.00
+  },
+  {
+    "Id": 2,
+    "Nome": "X-Burger",
+    "IngredienteIds": [ 3, 5 ],
+    "Valor": 0.00
+  },
+  {
+    "Id": 3,
+    "Nome": "X-Egg",
+    "IngredienteIds": [ 4, 3, 5 ],
+    "Valor": 0.00
+  },
+  {
+    "Id": 4,
+    "Nome": "X-Egg Bacon",
+    "IngredienteIds": [ 4, 2, 3, 5 ],
+    "Valor": 0.00
+  }
+]
