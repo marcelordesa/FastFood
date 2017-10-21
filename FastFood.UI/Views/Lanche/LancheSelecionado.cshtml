@@ -2,6 +2,20 @@
 @{
     ViewData["Title"] = "LancheSelecionado";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var idsIngredientesLanche = "";
+
+    foreach (var item in Model.IngredienteIds)
+    {
+        if (idsIngredientesLanche == string.Empty)
+        {
+            idsIngredientesLanche = item.ToString();
+        }
+        else
+        {
+            idsIngredientesLanche = idsIngredientesLanche + "," + item.ToString();
+        }
+    }
 }
 <div style="align-content:center;margin-top:50px;">
     <label style="font-weight:bold;">LANCHE SELECIONADO</label>
@@ -25,7 +39,16 @@
         <tr>
             <th>Ingrediente</th>
             <th>Valor</th>
+            <th>Ações</th>
         </tr>
+        @foreach (var item in Model.Ingredientes)
+        {
+            <tr>
+                <td><input id=hiddenId type=hidden value=@item.Id />@item.Nome</td>
+                <td>@("R$ " + item.Valor)</td>
+                <td style="align-content:center;"><a class="glyphicon glyphicon-remove-circle jsClickRemover" data-Id="@item.Id" style="cursor:pointer;align-content:center;"></a></td>
+            </tr>
+        }
     </table>
 </div>
 
@@ -40,7 +63,7 @@
         $(document).ready(function () {
             var listaIngredientes = [];
             var ingredientesSelecionados = [];
-            $('#tblIngredientes').hide();
+            var ingredientesLancheSelecionado = '@idsIngredientesLanche'
 
             $.ajax({
                 url: "/Lanche/RetornaIngedientes",
@@ -52,6 +75,13 @@
                     });
 
                     listaIngredientes = data;
+
+                    var ingrAux = ingredientesLancheSelecionado.split(',');
+
+                    for (var i = 0; i < ingrAux.length; i++)
+                    {
+                        ingredientesSelecionados.push(parseInt(ingrAux[i]));
+                    }
                 }
             });
 
@@ -63,7 +93,7 @@
                 }
                 else {
 
-                    ingredientesSelecionados.push($("#ddlIngredientes").val());
+                    ingredientesSelecionados.push(parseInt($("#ddlIngredientes").val()));
                     var valorAux = $('#lblValor').html().replace("R$ ", "");
 
                     var valorObj = parseFloat(valorAux);
@@ -80,21 +110,32 @@
                         }
                     }
 
-                    $('#tblIngredientes').show();
-
-                    $('#tblIngredientes tr:last').after('<tr><td><input id=hiddenId type=hidden value=' + $("#ddlIngredientes").val() + ' />' + $('#ddlIngredientes option:selected').text() + '</td><td>R$ ' + valor + '</td></tr>');
-
+                    $('#tblIngredientes tr:last').after('<tr><td><input id=hiddenId type=hidden value=' + $("#ddlIngredientes").val() + ' />' + $('#ddlIngredientes option:selected').text() + '</td><td>R$ ' + valor + '</td><td style=lign-content:center;><a class="glyphicon glyphicon-remove-circle jsClickRemover" data-Id=' + $("#ddlIngredientes").val() + ' style="cursor:pointer;align-content:center;"></a></td></tr>');
                     $("#ddlIngredientes").val("0");
                 }
             });
 
-            //$('#tblIngredientes').on('click', '.jsClickRemover', function () {
-            //    $(this).closest('tr').remove();
-            //});
+            $('#tblIngredientes').on('click', '.jsClickRemover', function () {
+                var id = parseInt($(this).attr("data-Id"));
+                var pos = ingredientesSelecionados.indexOf(id);
+
+                ingredientesSelecionados.splice(pos, 1);
+
+                var valorAux = $('#lblValor').html().replace("R$ ", "");
+
+                var valorObj = parseFloat(valorAux);
+
+                $.post("/Lanche/PostRetornaLancheCalculado",
+                { "id": @Model.Id, "ingredienteids": ingredientesSelecionados, "nome": '@Model.Nome', "valor": valorObj },
+                    obterCallback
+                );
+
+                $(this).closest('tr').remove();
+            });
         });
 
         function obterCallback(retorno, status) {
             $('#lblValor').html("R$ " + retorno.valor);
-         }
+        }
     </script>
 }

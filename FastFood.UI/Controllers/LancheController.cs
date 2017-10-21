@@ -46,5 +46,22 @@ namespace FastFood.UI.Controllers
 
             return Json(lancheAtual);
         }
+
+        //[HttpPost]
+        //[Route("Lanche/PostRetornaIngedientesPorIds")]
+        //public JsonResult PostRetornaIngedientesPorIds(string ids)
+        //{
+        //    var idsAux = ids.Split(',');
+        //    List<int> idsIngredientes = new List<int>();
+
+        //    foreach(var item in idsAux)
+        //    {
+        //        idsIngredientes.Add(int.Parse(item));
+        //    }
+
+        //    var ingrediente = serviceIngrediente.RetornaIngredientesPorArrayId(idsIngredientes.ToArray());
+
+        //    return Json(ingrediente);
+        //}
     }
 }

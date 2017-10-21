@@ -38,6 +38,8 @@ namespace FastFood.Infrastructures.Repositories
                     valorLanche = valorLanche + RetornaIndedientePorId(ingredienteId).Valor;
                 }
 
+                itemLanche.Ingredientes = RetornaIngredientes().Where(i => itemLanche.IngredienteIds.Contains(i.Id));
+
                 itemLanche.Valor = valorLanche;
             }
 

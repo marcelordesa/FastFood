@@ -10,5 +10,6 @@ namespace FastFood.Domain.Contracts.Services
         IEnumerable<Ingrediente> RetornaIngredientes();
         Ingrediente RetornaIndedientePorId(int id);
         void AlterarIngrediente(Ingrediente ingrediente);
+        //IEnumerable<Ingrediente> RetornaIngredientesPorArrayId(int[] ingredientes);
     }
 }

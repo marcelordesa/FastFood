@@ -1,6 +1,7 @@
 ﻿using FastFood.Domain.Contracts.Repositories;
 using FastFood.Domain.Contracts.Services;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using FastFood.Domain.Entities;
@@ -30,5 +31,13 @@ namespace FastFood.Service
         {
             return this.repository.RetornaIngredientes();
         }
+
+        //public IEnumerable<Ingrediente> RetornaIngredientesPorArrayId(int[] ingredientes)
+        //{
+        //    var lstIngredintes = RetornaIngredientes();
+        //    lstIngredintes = lstIngredintes.Where(i => ingredientes.Contains(i.Id)).ToList();
+
+        //    return lstIngredintes;
+        //}
     }
 }

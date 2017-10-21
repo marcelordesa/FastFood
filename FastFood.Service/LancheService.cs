@@ -28,24 +28,18 @@ namespace FastFood.Service
 
         public Lanche RetornaLancheCalculado(Lanche lanche)
         {
-            var lancheAtual = this.repository.RetornaLanchePorId(lanche.Id);
-            List<int> ingredientes = new List<int>();
-
-            ingredientes.AddRange(lancheAtual.IngredienteIds);
-            ingredientes.AddRange(lanche.IngredienteIds);
-
-            lancheAtual.IngredienteIds = ingredientes.ToArray();
+            lanche.Valor = 0;
 
             foreach (var ingrediente in lanche.IngredienteIds)
             {
-                lancheAtual.Valor = lancheAtual.Valor + this.repository.RetornaIndedientePorId(ingrediente).Valor;
+                lanche.Valor = lanche.Valor + this.repository.RetornaIndedientePorId(ingrediente).Valor;
             }
 
-            PromocaoLigth(lancheAtual);
-            PromocaoMuitaCarne(lancheAtual);
-            PromocaoMuitoQueijo(lancheAtual);
+            lanche = PromocaoLigth(lanche);
+            lanche = PromocaoMuitaCarne(lanche);
+            lanche = PromocaoMuitoQueijo(lanche);
 
-            return lancheAtual;
+            return lanche;
         }
 
         private Lanche PromocaoLigth(Lanche lanche)
