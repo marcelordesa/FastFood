@@ -10,5 +10,6 @@ namespace FastFood.Domain.Contracts.Services
         IEnumerable<Lanche> RetornaLanches();
         Lanche RetornaLanchePorId(int id);
         Lanche RetornaLancheCalculado(Lanche lanche);
+        float CalculaPreco(Lanche lanche);
     }
 }

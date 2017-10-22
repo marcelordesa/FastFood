@@ -29,11 +29,8 @@ namespace FastFood.Service
         public Lanche RetornaLancheCalculado(Lanche lanche)
         {
             lanche.Valor = 0;
-
-            foreach (var ingrediente in lanche.IngredienteIds)
-            {
-                lanche.Valor = lanche.Valor + this.repository.RetornaIndedientePorId(ingrediente).Valor;
-            }
+            //Calcula preço do lanche
+            lanche.Valor = CalculaPreco(lanche);
 
             //Arrendoda valor e mantem duas casas decimais
             lanche.Valor = float.Parse(Math.Round(lanche.Valor, 2).ToString());
@@ -46,6 +43,16 @@ namespace FastFood.Service
             lanche = PromocaoLigth(lanche);
 
             return lanche;
+        }
+
+        public float CalculaPreco(Lanche lanche)
+        {
+            foreach (var ingrediente in lanche.IngredienteIds)
+            {
+                lanche.Valor = lanche.Valor + this.repository.RetornaIndedientePorId(ingrediente).Valor;
+            }
+
+            return lanche.Valor;
         }
 
         private Lanche PromocaoLigth(Lanche lanche)

@@ -42,5 +42,21 @@ namespace FastFood.UnitTest
 
             service.RetornaLancheCalculado(lanche);
         }
+
+        [TestMethod]
+        public void RetornarCalcularLanches()
+        {
+            //1 = X-Bacon; 2 = X-Burger; 3 = X-Egg; 4 = X-Egg Bacon
+            var lanche = service.RetornaLanchePorId(1);
+
+            List<int> ingredientes = new List<int>();
+            //1 = Alface; 2 = Bacon; 3 = Hamburguer; 4 = Ovo; 5 = Queijo;
+            ingredientes.Add(2);
+            ingredientes.Add(3);
+            ingredientes.Add(5);
+            lanche.IngredienteIds = ingredientes.ToArray();
+
+            service.CalculaPreco(lanche);
+        }
     }
 }
