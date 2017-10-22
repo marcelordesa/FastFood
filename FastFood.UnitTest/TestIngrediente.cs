@@ -23,16 +23,18 @@ namespace FastFood.UnitTest
         [TestMethod]
         public void RetornaIngedientePorId()
         {
+            //1 = Alface; 2 = Bacon; 3 = Hamburguer; 4 = Ovo; 5 = Queijo;
             service.RetornaIndedientePorId(1);
         }
 
         [TestMethod]
         public void AlterarIngrediente()
         {
+            //1 = Alface; 2 = Bacon; 3 = Hamburguer; 4 = Ovo; 5 = Queijo;
             Ingrediente ingrediente = new Ingrediente {
                 Id = 1,
                 Nome = "Alface",
-                Valor = 3.00M
+                Valor = 3.00f
             };
 
             service.AlterarIngrediente(ingrediente);

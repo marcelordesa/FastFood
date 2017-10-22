@@ -23,7 +23,7 @@
 
 <div style="margin-top:30px;">
     <label style="font-weight:normal">Nome do Lanche:</label>
-    <label style="font-weight:bold;">@Model.Nome</label>
+    <label style="font-weight:bold;" id="lblNome">@Model.Nome</label>
 </div>
 <div style="margin-top:15px;">
     <label style="font-weight:normal;">Valor do Lanche:</label>
@@ -53,8 +53,8 @@
 </div>
 
 <div style="margin-top:15px;">
-    <a href="@Url.Action("index")" style="margin-right:50px;">Voltar</a>
-    <a href="@Url.Action("index")">Finalizar pedido</a>
+    <a id="btnVoltar" href="@Url.Action("index")" style="margin-right:50px;">Voltar</a>
+    <a id="btnFinalizar" href="@Url.Action("index")">Finalizar pedido</a>
 </div>
 
 @section Scripts
@@ -131,6 +131,24 @@
                 );
 
                 $(this).closest('tr').remove();
+            });
+
+            $('#btnVoltar').click(function () {
+                if (confirm('Deseja realmente cancelar o pedido?'))
+                    return true;
+
+                return false;
+            });
+
+            $('#btnFinalizar').click(function () {
+                if (confirm('Deseja realmente finalizar o pedido?'))
+                {
+                    alert('O seu pedido foi ' + $('#lblNome').html() + '\n no valor total de ' + $('#lblValor').html());
+
+                    return true;
+                }
+
+                return false;
             });
         });
 

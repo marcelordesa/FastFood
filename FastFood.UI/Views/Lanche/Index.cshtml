@@ -7,7 +7,7 @@
     <div style="align-content:center;margin-top:100px;">
         <label>LANCHES</label>
     </div>
-    <table class="table table-striped" style="margin-top:15px;">
+    <table id="tblLanches" class="table table-striped" style="margin-top:15px;">
         <tr>
             <th>Nome</th>
             <th>Valor</th>
@@ -18,8 +18,25 @@
             <tr>
                 <td>@item.Nome</td>
                 <td>@("R$ " + item.Valor)</td>
-                <td style="align-content:center;"><a href=@Url.Action("LancheSelecionado", "Lanche", new { id = item.Id }) class="glyphicon glyphicon-ok-circle" style="cursor:pointer;align-content:center;"></a></td>
+                <td style="align-content:center;"><a href=@Url.Action("LancheSelecionado", "Lanche", new { id = item.Id }) class="glyphicon glyphicon-ok-circle jsClickConfirm" data-Nome="@item.Nome" style="cursor:pointer;align-content:center;"></a></td>
             </tr>
         }
     </table>
 </div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('#tblLanches').on('click', '.jsClickConfirm', function () {
+                var nome = $(this).attr("data-Nome");
+
+                if (confirm('Deseja realmente escolher ' + nome + '?'))
+                    return true;
+
+                return false;
+             });
+        });
+    </script>
+}

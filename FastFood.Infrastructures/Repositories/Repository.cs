@@ -41,6 +41,8 @@ namespace FastFood.Infrastructures.Repositories
                 itemLanche.Ingredientes = RetornaIngredientes().Where(i => itemLanche.IngredienteIds.Contains(i.Id));
 
                 itemLanche.Valor = valorLanche;
+
+                itemLanche.Valor = float.Parse(Math.Round(itemLanche.Valor, 2).ToString());
             }
 
             return lanches;
@@ -57,6 +59,8 @@ namespace FastFood.Infrastructures.Repositories
             }
 
             lanche.Valor = valorLanche;
+
+            lanche.Valor = float.Parse(Math.Round(lanche.Valor, 2).ToString());
 
             return lanche;
         }

@@ -31,13 +31,5 @@ namespace FastFood.Service
         {
             return this.repository.RetornaIngredientes();
         }
-
-        //public IEnumerable<Ingrediente> RetornaIngredientesPorArrayId(int[] ingredientes)
-        //{
-        //    var lstIngredintes = RetornaIngredientes();
-        //    lstIngredintes = lstIngredintes.Where(i => ingredientes.Contains(i.Id)).ToList();
-
-        //    return lstIngredintes;
-        //}
     }
 }
