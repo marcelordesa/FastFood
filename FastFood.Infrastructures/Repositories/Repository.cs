@@ -31,18 +31,7 @@ namespace FastFood.Infrastructures.Repositories
 
             foreach (var itemLanche in lanches)
             {
-                float valorLanche = 0;
-
-                foreach (var ingredienteId in itemLanche.IngredienteIds)
-                {
-                    valorLanche = valorLanche + RetornaIndedientePorId(ingredienteId).Valor;
-                }
-
                 itemLanche.Ingredientes = RetornaIngredientes().Where(i => itemLanche.IngredienteIds.Contains(i.Id));
-
-                itemLanche.Valor = valorLanche;
-
-                itemLanche.Valor = float.Parse(Math.Round(itemLanche.Valor, 2).ToString());
             }
 
             return lanches;
@@ -50,19 +39,7 @@ namespace FastFood.Infrastructures.Repositories
 
         public Lanche RetornaLanchePorId(int id)
         {
-            var lanche = RetornaLanches().Where(i => i.Id == id).FirstOrDefault();
-            float valorLanche = 0;
-
-            foreach (var ingredienteId in lanche.IngredienteIds)
-            {
-                valorLanche = valorLanche + RetornaIndedientePorId(ingredienteId).Valor;
-            }
-
-            lanche.Valor = valorLanche;
-
-            lanche.Valor = float.Parse(Math.Round(lanche.Valor, 2).ToString());
-
-            return lanche;
+            return RetornaLanches().Where(i => i.Id == id).FirstOrDefault();
         }
 
         public void AlterarIngrediente(Ingrediente ingrediente)

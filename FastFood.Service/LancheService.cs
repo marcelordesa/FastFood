@@ -18,44 +18,52 @@ namespace FastFood.Service
 
         public Lanche RetornaLanchePorId(int id)
         {
-            return this.repository.RetornaLanchePorId(id);
+            var lanche = this.repository.RetornaLanchePorId(id);
+            lanche.Valor = CalculaPreco(lanche);
+
+            return lanche;
         }
 
         public IEnumerable<Lanche> RetornaLanches()
         {
-            return this.repository.RetornaLanches();
+            var lanches = this.repository.RetornaLanches();
+
+            foreach (var item in lanches)
+            {
+                item.Valor = CalculaPreco(item);
+            }
+
+            return lanches;
         }
 
         public Lanche RetornaLancheCalculado(Lanche lanche)
         {
-            lanche.Valor = 0;
             //Calcula preço do lanche
             lanche.Valor = CalculaPreco(lanche);
-
-            //Arrendoda valor e mantem duas casas decimais
-            lanche.Valor = float.Parse(Math.Round(lanche.Valor, 2).ToString());
-
-            //Verificar e retorna a promoção muita carne e se caso for uma promocao muita carne
-            lanche = PromocaoMuitaCarne(lanche);
-            //Verificar e retorna a promoção muito queijo e se caso for uma promocao muito queijos
-            lanche = PromocaoMuitoQueijo(lanche);
-            //Verificar e retorna a promoção do lanche ligth e se caso for um lanche ligth
-            lanche = PromocaoLigth(lanche);
 
             return lanche;
         }
 
         public float CalculaPreco(Lanche lanche)
         {
+            lanche.Valor = 0;
+
             foreach (var ingrediente in lanche.IngredienteIds)
             {
                 lanche.Valor = lanche.Valor + this.repository.RetornaIndedientePorId(ingrediente).Valor;
             }
 
+            //Verificar e retorna a promoção muita carne e se caso for uma promocao muita carne
+            lanche.Valor = PromocaoMuitaCarne(lanche);
+            //Verificar e retorna a promoção muito queijo e se caso for uma promocao muito queijos
+            lanche.Valor = PromocaoMuitoQueijo(lanche);
+            //Verificar e retorna a promoção do lanche ligth e se caso for um lanche ligth
+            lanche.Valor = PromocaoLigth(lanche);
+
             return lanche.Valor;
         }
 
-        private Lanche PromocaoLigth(Lanche lanche)
+        public float PromocaoLigth(Lanche lanche)
         {
             bool temAlface = false;
             bool temBacon = false;
@@ -81,10 +89,10 @@ namespace FastFood.Service
             //Arrendoda valor e mantem duas casas decimais
             lanche.Valor = float.Parse(Math.Round(lanche.Valor, 2).ToString());
 
-            return lanche;
+            return lanche.Valor;
         }
 
-        private Lanche PromocaoMuitaCarne(Lanche lanche)
+        public float PromocaoMuitaCarne(Lanche lanche)
         {
             int carne = 0;
 
@@ -107,10 +115,10 @@ namespace FastFood.Service
             //Arrendoda valor e mantem duas casas decimais
             lanche.Valor = float.Parse(Math.Round(lanche.Valor, 2).ToString());
 
-            return lanche;
+            return lanche.Valor;
         }
 
-        private Lanche PromocaoMuitoQueijo(Lanche lanche)
+        public float PromocaoMuitoQueijo(Lanche lanche)
         {
             int queijo = 0;
 
@@ -133,7 +141,7 @@ namespace FastFood.Service
             //Arrendoda valor e mantem duas casas decimais
             lanche.Valor = float.Parse(Math.Round(lanche.Valor, 2).ToString());
 
-            return lanche;
+            return lanche.Valor;
         }
     }
 }

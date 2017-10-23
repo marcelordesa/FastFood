@@ -11,5 +11,8 @@ namespace FastFood.Domain.Contracts.Services
         Lanche RetornaLanchePorId(int id);
         Lanche RetornaLancheCalculado(Lanche lanche);
         float CalculaPreco(Lanche lanche);
+        float PromocaoLigth(Lanche lanche);
+        float PromocaoMuitaCarne(Lanche lanche);
+        float PromocaoMuitoQueijo(Lanche lanche);
     }
 }
